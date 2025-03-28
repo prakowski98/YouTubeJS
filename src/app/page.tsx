@@ -102,7 +102,7 @@ export default function Home() {
               <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
             </svg>
           </button>
-          <span className="text-white font-medium">YoutubeJS Player</span>
+		<a href="/" className="text-white font-medium cursor-pointer hover:text-gray-300 transition-colors">YoutubeJS Player</a>
         </div>
         
         <div className="search-container">

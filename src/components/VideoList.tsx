@@ -33,12 +33,12 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onVideoSelect }) => {
   };
 
   return (
-    <div className="video-list">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div className="video-list w-full">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {videos.map((video) => (
           <div 
             key={video.id} 
-            className="video-item bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-200"
+            className="video-item bg-[#1a1a1a] rounded overflow-hidden cursor-pointer hover:bg-[#252525] transition-colors duration-200"
             onClick={() => onVideoSelect(video.id)}
           >
             <div className="video-thumbnail relative h-40">
@@ -54,9 +54,9 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onVideoSelect }) => {
               </div>
             </div>
             <div className="p-3">
-              <h3 className="text-sm font-medium line-clamp-2">{video.title}</h3>
-              <p className="text-xs text-gray-500 mt-1">{video.channelTitle}</p>
-              <p className="text-xs text-gray-500">{getRandomTimeAgo()}</p>
+              <h3 className="text-sm font-medium line-clamp-2 text-white">{video.title}</h3>
+              <p className="text-xs text-gray-400 mt-1">{video.channelTitle}</p>
+              <p className="text-xs text-gray-400">{getRandomTimeAgo()}</p>
             </div>
           </div>
         ))}

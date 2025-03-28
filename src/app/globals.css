@@ -1,8 +1,16 @@
 @import "tailwindcss";
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --sidebar-bg: #0f0f0f;
+  --sidebar-hover: #272727;
+  --sidebar-active: #383838;
+  --sidebar-text: #f1f1f1;
+  --sidebar-text-inactive: #aaaaaa;
+  --icon-size: 24px;
+  --sidebar-width: 240px;
+  --sidebar-collapsed-width: 72px;
+  --header-height: 56px;
 }
 
 @theme inline {
@@ -22,5 +30,199 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Roboto, Arial, sans-serif;
+}
+
+/* Styl dla bocznego menu YouTube */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: var(--header-height);
+  width: var(--sidebar-width);
+  height: calc(100vh - var(--header-height));
+  background-color: var(--sidebar-bg);
+  overflow-y: auto;
+  z-index: 10;
+  scrollbar-width: thin;
+  scrollbar-color: #606060 var(--sidebar-bg);
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: var(--sidebar-bg);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: #606060;
+  border-radius: 4px;
+}
+
+.sidebar-collapsed {
+  width: var(--sidebar-collapsed-width);
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 24px;
+  cursor: pointer;
+  color: var(--sidebar-text);
+  text-decoration: none;
+  font-size: 14px;
+  height: 40px;
+}
+
+.sidebar-item:hover {
+  background-color: var(--sidebar-hover);
+}
+
+.sidebar-item.active {
+  background-color: var(--sidebar-active);
+  font-weight: 500;
+}
+
+.sidebar-icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  margin-right: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-collapsed .sidebar-item {
+  padding: 16px 0;
+  flex-direction: column;
+  height: 74px;
+  justify-content: center;
+}
+
+.sidebar-collapsed .sidebar-icon {
+  margin-right: 0;
+  margin-bottom: 6px;
+}
+
+.sidebar-collapsed .sidebar-text {
+  font-size: 10px;
+  text-align: center;
+}
+
+.sidebar-section {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--sidebar-hover);
+}
+
+.sidebar-header {
+  padding: 8px 24px;
+  font-size: 16px;
+  color: var(--sidebar-text);
+  font-weight: 500;
+}
+
+/* Styl dla górnego paska YouTube */
+.header {
+  display: flex;
+  align-items: center;
+  height: var(--header-height);
+  padding: 0 16px;
+  background-color: var(--sidebar-bg);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-right: 24px;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.search-input {
+  flex: 1;
+  height: 40px;
+  padding: 0 12px;
+  font-size: 16px;
+  border: 1px solid #303030;
+  background-color: #121212;
+  color: var(--sidebar-text);
+  border-radius: 2px 0 0 2px;
+}
+
+.search-button {
+  height: 40px;
+  width: 64px;
+  background-color: #303030;
+  border: none;
+  border-radius: 0 2px 2px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-content {
+  margin-left: var(--sidebar-width);
+  margin-top: var(--header-height);
+  padding: 24px;
+}
+
+.main-content-collapsed {
+  margin-left: var(--sidebar-collapsed-width);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1320px) {
+  .sidebar {
+    width: var(--sidebar-collapsed-width);
+  }
+  
+  .main-content {
+    margin-left: var(--sidebar-collapsed-width);
+  }
+  
+  .sidebar-text {
+    display: none;
+  }
+  
+  .sidebar-icon {
+    margin-right: 0;
+  }
+  
+  .sidebar-item {
+    justify-content: center;
+    padding: 16px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-container {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    display: none;
+  }
+  
+  .main-content {
+    margin-left: 0;
+  }
+  
+  .search-container {
+    max-width: none;
+  }
 }
